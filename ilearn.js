@@ -1,3 +1,7 @@
+/**
+ * Object.extend
+ * Exte método copia todos os membros de um objeto para o outro
+ */
 Object.extend = function(dest, ori){
     for(var member in ori) {
         dest[member] = ori[member];
@@ -5,6 +9,10 @@ Object.extend = function(dest, ori){
     return dest;
 }
 
+/**
+ * Class
+ * Função criada para emular classes
+ */
 var Class = function(){
     var self = function(){
         this.init.apply(this, arguments);
@@ -28,6 +36,11 @@ var Class = function(){
     return self;
 }
 
+/**
+ * Function.bind
+ * Método utilizado para colocar uma função em um escopo definido,
+ * podendo fornecer explicitamente novos argumentos
+ */
 Function = Class(Function, {
    bind : function(obj, args){
         var method = this;
@@ -38,6 +51,10 @@ Function = Class(Function, {
     }
 });
 
+/**
+ * EffectAbstract
+ * Fornece recurso básico para interação dos efeitos
+ */
 var EffectAbstract = Class({
     init: function(obj, config){
         this.time = 1000;
@@ -80,6 +97,11 @@ var EffectAbstract = Class({
     callBack: function(){}
 });
         
+/**
+ * EffectGrow
+ * Fornece recurso para aumentar a escala de um objeto
+ * até o seu tamanho original
+ */
 var EffectGrow = Class(EffectAbstract, {
     prepare: function(){
     
@@ -115,6 +137,11 @@ var EffectGrow = Class(EffectAbstract, {
     }
 });
 
+/**
+ * EffectApear
+ * Fornece recurso para dar opacidade a um objeto
+ * até seu estado original
+ */
 var EffectApear = Class(EffectAbstract, {
     prepare: function(){    
         this.setOpacity(0);
@@ -128,6 +155,10 @@ var EffectApear = Class(EffectAbstract, {
     }
 });
 
+/**
+ * EffectParallel
+ * Fornece recurso para executar paralelamente vários efeitos
+ */
 var EffectParallel = Class(EffectAbstract, {
     init: function(effects, config){
         this.constructor(null, config);
@@ -145,6 +176,9 @@ var EffectParallel = Class(EffectAbstract, {
     }
 });
 
+/**
+ * Ajax
+ */
 var Ajax = Class({
     
     init: function(config){
@@ -203,6 +237,10 @@ var Ajax = Class({
     
 });
 
+/**
+ * TwiterProxy
+ * Define o local onde será consumido as mensagens do twitter
+ */
 var TwiterProxy = Class({
 
     url: 'twitter.php',
@@ -247,6 +285,10 @@ var TwiterProxy = Class({
 
 });
 
+/**
+ * PageSize
+ * Utilizado para pegar as dimensoes visiveis da página
+ */
 var PageSize = {
     getWidth: function() {
         return document.body.clientWidth || document.documentElement.clientWidth;
@@ -256,6 +298,10 @@ var PageSize = {
     }
 }
 
+/**
+ * TwitterGrow
+ * Recurso criado mostrar as mensagens do twitter na página
+ */
 var TwitterGrow = Class({
     
     init: function() {
